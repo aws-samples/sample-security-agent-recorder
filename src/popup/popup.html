@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AWS Security Agent Recorder</title>
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <main id="popup-root" class="popup" data-state="idle" data-empty="true" data-error="false">
+        <header class="popup__header">
+            <span class="recording-indicator" role="status" aria-label="Recording in progress"></span>
+            <h1 class="popup__title">AWS Security Agent Recorder</h1>
+        </header>
+
+        <p id="error-banner" class="error-banner" role="alert" hidden></p>
+
+        <p class="next-step-banner">
+            Navigate to the AWS Security Agent web app to configure a
+            penetration test.
+        </p>
+
+        <p class="description">
+            Open the page you want to record, then choose
+            <strong>Start recording</strong>. The page will reload and
+            collect every domain it contacts. Navigate around the app and
+            login to get full coverage.
+        </p>
+
+        <section class="target-card" aria-label="Target URL">
+            <p class="target-card__label">Target URL</p>
+            <p class="target-card__value" id="target-domain" aria-live="polite">
+                -
+            </p>
+        </section>
+
+        <section class="urls" aria-label="Accessible URLs">
+            <header class="urls__header">
+                <h2 class="urls__title">Accessible URLs</h2>
+                <span class="urls__count" id="count" aria-live="polite">0</span>
+            </header>
+            <ol id="urls-list" class="urls__list" aria-describedby="urls-empty"></ol>
+            <p id="urls-empty" class="urls__empty">
+                No additional domains captured yet.
+            </p>
+        </section>
+
+        <p id="status-banner" class="status-banner" role="status" aria-live="polite"></p>
+
+        <section class="actions">
+            <button type="button" id="start-button" class="button button--primary start-button">
+                Start recording
+            </button>
+            <button type="button" id="stop-button" class="button button--primary stop-button">
+                Stop recording
+            </button>
+            <button type="button" id="copy-button" class="button button--secondary copy-button">
+                Copy all
+            </button>
+            <button type="button" id="clear-button" class="button button--ghost clear-button">
+                Clear list
+            </button>
+        </section>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>

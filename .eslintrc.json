@@ -1,0 +1,48 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "node": true,
+        "es2022": true,
+        "webextensions": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-restricted-syntax": [
+            "error",
+            {
+                "selector": "MemberExpression[object.name='chrome']",
+                "message": "Direct chrome.* usage is forbidden. Import the `browser` shim from src/shared/browser.js instead."
+            },
+            {
+                "selector": "MemberExpression[object.type='ThisExpression'][property.name='chrome']",
+                "message": "Direct chrome.* usage is forbidden. Import the `browser` shim from src/shared/browser.js instead."
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "src/shared/browser.js"
+            ],
+            "rules": {
+                "no-restricted-syntax": "off"
+            }
+        },
+        {
+            "files": [
+                "tests/**/*.js",
+                "**/*.spec.js",
+                "**/*.test.js",
+                "scripts/**/*.js",
+                "vitest.config.js"
+            ],
+            "rules": {
+                "no-restricted-syntax": "off"
+            }
+        }
+    ]
+}

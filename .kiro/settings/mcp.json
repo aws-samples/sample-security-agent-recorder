@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "awslabs.aws-api-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-api-mcp-server@latest"
+      ],
+      "env": {
+        "AWS_REGION": "us-west-2"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "aws-knowledge-mcp-server": {
+      "type": "http",
+      "url": "https://knowledge-mcp.global.api.aws",
+      "autoApprove": [
+        "aws___search_documentation",
+        "aws___read_documentation",
+        "aws___retrieve_skill"
+      ],
+      "disabled": false
+    },
+    "firefox-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firefox-devtools-mcp@latest",
+        "--profile-path /Users/schiefj/Library/Application Support/Firefox/Profiles/y63woh4r.default-release",
+        "--viewport",
+        "1280x720"
+      ],
+      "env": {
+        "START_URL": "about:home"
+      }
+    }
+  }
+}

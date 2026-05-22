@@ -1,0 +1,21 @@
+{
+    "name": "domain-recorder-extension",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Cross-browser WebExtension that records unique domains contacted by your web app for AWS Security Agent setup.",
+    "type": "module",
+    "scripts": {
+        "test": "vitest --run --passWithNoTests",
+        "test:watch": "vitest --passWithNoTests",
+        "lint": "eslint --no-error-on-unmatched-pattern \"src/**/*.js\" \"tests/**/*.js\"",
+        "build": "node scripts/build.js"
+    },
+    "devDependencies": {
+        "@fast-check/vitest": "^0.1.3",
+        "eslint": "^8.57.1",
+        "fast-check": "^3.23.1",
+        "jsdom": "^25.0.1",
+        "vitest": "^2.1.9",
+        "webextension-polyfill": "^0.12.0"
+    }
+}
