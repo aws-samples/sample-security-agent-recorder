@@ -1,93 +1,113 @@
-# security-agent-extension
+# AWS Security Agent Recorder
 
+A cross-browser extension that records the unique domains your web app
+contacts and auto fills them in the [AWS Security Agent](https://aws.amazon.com/security-agent/) pentest configuration.
 
+## What it does
 
-## Getting started
+When you start a recording session in the active tab:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+1. The extension captures the tab's origin as the **target URL**.
+2. It reloads the tab and watches every HTTP request it makes.
+3. Every other unique origin the page contacts is added to a list of
+   **accessible URLs**.
+4. A pastel purple/blue border around the page reminds you a session is
+   active.
+5. On AWS Security Agent's "create" pages, focusing a Target URL,
+   Accessible URLs, or Out-of-scope URLs field shows a panel with the
+   recorded values. Click one to fill the field. Filled entries get a
+   green check, excluded entries get a red x.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+The popup shows the target URL, the running list of accessible URLs, and
+buttons to Start, Stop, Copy all, and Clear.
 
-## Add your files
+All data lives in `storage.local` and never leaves your browser.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+## Install
+
+The extension is distributed as zip files attached to each GitHub
+release. Download the zip that matches your browser, then follow the
+instructions below.
+
+- `aws-security-agent-recorder-chrome-X.Y.Z.zip`
+- `aws-security-agent-recorder-firefox-X.Y.Z.zip`
+
+### Chrome (unpacked, persistent)
+
+1. Unzip the Chrome zip somewhere stable (the folder must remain in
+   place for as long as you use the extension).
+2. Open `chrome://extensions`.
+3. Toggle **Developer mode** on (top right).
+4. Choose **Load unpacked** and pick the unzipped folder (the one that
+   contains `manifest.json`).
+5. Pin the extension from the puzzle-piece menu in the toolbar so the
+   icon is visible.
+
+The extension stays installed across browser restarts. Updating means
+replacing the folder contents with a newer release and clicking the
+refresh icon on the extension's card in `chrome://extensions`.
+
+### Firefox (temporary install)
+
+Firefox will load the extension as a **temporary** add-on
+that is removed when you close Firefox.
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Choose **Load Temporary Add-on...**.
+3. In the file picker, select the Firefox **zip itself**, or unzip it
+   first and pick the `manifest.json` inside the unzipped folder.
+4. The extension appears under **Temporary Extensions** and the toolbar
+   icon shows up immediately.
+
+You'll need to repeat these steps after each Firefox restart.
+
+## Use
+
+1. Open the page you want to record.
+2. Choose the extension icon to open the popup.
+3. Choose **Start recording**. The page reloads and a pastel border
+   appears around it.
+4. Use the app normally: navigate, log in, exercise the features you
+   want covered. Each new origin shows up in the popup list.
+5. Choose **Stop recording** when you're done. The border disappears.
+6. Follow the steps on [Create a penetration test](https://docs.aws.amazon.com/securityagent/latest/userguide/perform-penetration-test.html). Focus the Target URL field
+   and pick the recorded value from the panel; do the same for
+   Accessible URLs and Out-of-scope URLs.
+
+>Note: You may want to include an accessible URL as another target. This is common for applications where the API is served from a different domain than the target.
+
+7. If you'd rather paste manually, choose the domain in the popup to copy to your clipboard.
+
+**Clear list** removes the recorded data for the next session.
+
+## Remove
+
+### Chrome
+
+1. Open `chrome://extensions`.
+2. Find **AWS Security Agent Recorder**.
+3. Click **Remove**, then confirm.
+4. Delete the unpacked folder you loaded earlier if you no longer need it.
+
+### Firefox
+
+Temporary add-ons are removed automatically when Firefox closes. To
+remove one mid-session:
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Find **AWS Security Agent Recorder** under "Temporary Extensions".
+3. Click **Remove**.
+
+Either path also clears the extension's `storage.local` data.
+
+## Build from source
+
+If you'd rather build the zips yourself instead of downloading them:
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.aws.dev/schiefj/security-agent-extension.git
-git branch -M main
-git push -uf origin main
+npm install
+npm run package
 ```
 
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.aws.dev/schiefj/security-agent-extension/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+The script produces `dist/chrome/` and `dist/firefox/` (loadable as
+unpacked extensions) plus matching zip files in `dist/`.

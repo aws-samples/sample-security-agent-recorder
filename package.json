@@ -8,7 +8,8 @@
         "test": "vitest --run --passWithNoTests",
         "test:watch": "vitest --passWithNoTests",
         "lint": "eslint --no-error-on-unmatched-pattern \"src/**/*.js\" \"tests/**/*.js\"",
-        "build": "node scripts/build.js"
+        "build": "node scripts/build.js",
+        "package": "node scripts/package.js"
     },
     "devDependencies": {
         "@fast-check/vitest": "^0.1.3",
