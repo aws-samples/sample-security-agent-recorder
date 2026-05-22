@@ -25,9 +25,7 @@ All data lives in `storage.local` and never leaves your browser.
 
 ## Install
 
-The extension is distributed as zip files attached to each GitHub
-release. Download the zip that matches your browser, then follow the
-instructions below.
+In the artifacts folder, download the zip that matches your browser.
 
 - `aws-security-agent-recorder-chrome-X.Y.Z.zip`
 - `aws-security-agent-recorder-firefox-X.Y.Z.zip`
