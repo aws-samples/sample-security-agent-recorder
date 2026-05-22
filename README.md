@@ -3,6 +3,8 @@
 A cross-browser extension that records the unique domains your web app
 contacts and auto fills them in the [AWS Security Agent](https://aws.amazon.com/security-agent/) pentest configuration.
 
+![Extension screenshot](docs/extension.png)
+
 ## What it does
 
 When you start a recording session in the active tab:
@@ -61,6 +63,8 @@ You'll need to repeat these steps after each Firefox restart.
 
 ## Use
 
+To use the extension, follow the steps below.
+
 1. Open the page you want to record.
 2. Choose the extension icon to open the popup.
 3. Choose **Start recording**. The page reloads and a pastel border
@@ -76,7 +80,7 @@ You'll need to repeat these steps after each Firefox restart.
 
 7. If you'd rather paste manually, choose the domain in the popup to copy to your clipboard.
 
-**Clear list** removes the recorded data for the next session.
+![Autofill panel screenshot](docs/autofill.png)
 
 ## Remove
 
