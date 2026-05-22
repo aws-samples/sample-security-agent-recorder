@@ -5,8 +5,8 @@
  * Chrome Web Store / addons.mozilla.org).
  *
  * Output (with manifest version `X.Y.Z`):
- *   dist/aws-security-agent-recorder-chrome-X.Y.Z.zip
- *   dist/aws-security-agent-recorder-firefox-X.Y.Z.zip
+ *   artifacts/aws-security-agent-recorder-chrome-X.Y.Z.zip
+ *   artifacts/aws-security-agent-recorder-firefox-X.Y.Z.zip
  *
  * Each zip contains the contents of `dist/<variant>/` — i.e. the
  * `manifest.json` is at the zip root, which is what both stores require.
@@ -24,6 +24,7 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const distRoot = resolve(root, 'dist');
+const artifactsRoot = resolve(root, 'artifacts');
 const buildScript = resolve(here, 'build.js');
 
 const VARIANTS = ['chrome', 'firefox'];
@@ -66,7 +67,7 @@ async function packageVariant(variant) {
     }
     const version = await readManifestVersion(variantDir);
     const zipName = `${PACKAGE_BASENAME}-${variant}-${version}.zip`;
-    const zipPath = resolve(distRoot, zipName);
+    const zipPath = resolve(artifactsRoot, zipName);
     if (existsSync(zipPath)) {
         await rm(zipPath);
     }
@@ -75,14 +76,14 @@ async function packageVariant(variant) {
         args.push('-x', pattern);
     }
     run('zip', args, { cwd: variantDir });
-    console.log(`[package] Wrote dist/${zipName}`);
+    console.log(`[package] Wrote artifacts/${zipName}`);
 }
 
 async function main() {
     // Always rebuild from source so the zips reflect the current tree.
     run(process.execPath, [buildScript]);
 
-    await mkdir(distRoot, { recursive: true });
+    await mkdir(artifactsRoot, { recursive: true });
     for (const variant of VARIANTS) {
         await packageVariant(variant);
     }
