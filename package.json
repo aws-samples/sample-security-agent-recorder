@@ -12,11 +12,11 @@
         "package": "node scripts/package.js"
     },
     "devDependencies": {
-        "@fast-check/vitest": "^0.1.3",
+        "@fast-check/vitest": "^0.4.1",
         "eslint": "^8.57.1",
         "fast-check": "^3.23.1",
         "jsdom": "^25.0.1",
-        "vitest": "^2.1.9",
+        "vitest": "^4.1.9",
         "webextension-polyfill": "^0.12.0"
     }
 }
