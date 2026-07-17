@@ -36,7 +36,7 @@ In the artifacts folder, download the zip that matches your browser.
 
 1. Unzip the Chrome zip somewhere stable (the folder must remain in
    place for as long as you use the extension).
-2. Open `chrome://extensions`.
+2. Open [chrome://extensions](chrome://extensions)
 3. Toggle **Developer mode** on (top right).
 4. Choose **Load unpacked** and pick the unzipped folder (the one that
    contains `manifest.json`).
@@ -52,7 +52,7 @@ refresh icon on the extension's card in `chrome://extensions`.
 Firefox will load the extension as a **temporary** add-on
 that is removed when you close Firefox.
 
-1. Open `about:debugging#/runtime/this-firefox`.
+1. Open [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
 2. Choose **Load Temporary Add-on...**.
 3. In the file picker, select the Firefox **zip itself**, or unzip it
    first and pick the `manifest.json` inside the unzipped folder.
