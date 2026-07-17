@@ -97,10 +97,11 @@ const VARIANTS = [
         name: 'firefox',
         transformManifest(manifest) {
             const out = structuredClone(manifest);
-            // Firefox <121 MV3 only accepts `background.scripts`; later
-            // versions also accept `service_worker`, but keeping just
-            // `scripts` is the broadest-compatible choice given
-            // strict_min_version: 115.
+            // Firefox MV3 uses an event page (`background.scripts`) and
+            // does not support `background.service_worker`, so strip the
+            // Chrome-style service_worker entry for the Firefox build.
+            // (strict_min_version is 140; even current Firefox has no
+            // background service worker.)
             if (out.background) {
                 delete out.background.service_worker;
             }
