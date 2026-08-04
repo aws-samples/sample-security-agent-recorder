@@ -1,5 +1,8 @@
 # AWS Security Agent Recorder
 
+[![Firefox Add-on](https://badgen.net/amo/v/aws-security-agent-recorder?icon=firefox&label=Firefox%20Add-on&color=FF7139)](https://addons.mozilla.org/en-US/firefox/addon/aws-security-agent-recorder/)
+[![Chrome Web Store](https://badgen.net/chrome-web-store/v/pkdkjelccnnalmfbidikfgokhldgkfdd?icon=chrome&label=Chrome%20Web%20Store&color=4285F4)](https://chromewebstore.google.com/detail/aws-security-agent-record/pkdkjelccnnalmfbidikfgokhldgkfdd)
+
 A cross-browser extension that records the unique domains your web app
 contacts and auto fills them in the [AWS Security Agent](https://aws.amazon.com/security-agent/) pentest configuration.
 
@@ -27,6 +30,13 @@ All data lives in `storage.local` and never leaves your browser.
 
 ## Install
 
+> [!TIP]
+> You can install the extension from the store
+
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/aws-security-agent-recorder/)
+- [Chrome web store](https://chromewebstore.google.com/detail/aws-security-agent-record/pkdkjelccnnalmfbidikfgokhldgkfdd?authuser=0&hl=en)
+
+To install manually:
 In the artifacts folder, download the zip that matches your browser.
 
 - `aws-security-agent-recorder-chrome-X.Y.Z.zip`
