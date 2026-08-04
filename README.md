@@ -34,7 +34,7 @@ All data lives in `storage.local` and never leaves your browser.
 > You can install the extension from the store
 
 - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/aws-security-agent-recorder/)
-- [Chrome web store](https://chromewebstore.google.com/detail/aws-security-agent-record/pkdkjelccnnalmfbidikfgokhldgkfdd?authuser=0&hl=en)
+- [Chrome web store](https://chromewebstore.google.com/detail/aws-security-agent-record/pkdkjelccnnalmfbidikfgokhldgkfdd)
 
 To install manually:
 In the artifacts folder, download the zip that matches your browser.
