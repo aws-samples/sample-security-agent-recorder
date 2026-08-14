@@ -6,7 +6,10 @@
 //      `targetDomain`.
 //   3. The accessible-URL list and the autofill-accepted (`filledUrls`)
 //      set are reset so checkmarks track the current session only.
-//   4. The tab is reloaded so the recorder observes its full request set.
+//   4. The tab is reloaded with the browser cache bypassed so the recorder
+//      observes the full request set. Requests served from the in-memory
+//      cache are invisible to webRequest, so a cache-using reload would
+//      miss domains whose subresources come from cache.
 //   5. The pastel purple/blue recording border is injected via the
 //      `tabs.onUpdated` listener once the reload completes.
 //
@@ -381,7 +384,14 @@ async function handleStartRecording() {
     cachedState = result.state;
 
     if (browser.tabs && typeof browser.tabs.reload === 'function') {
-        await safeApiCall('tabs.reload', () => browser.tabs.reload(tab.id));
+        // Bypass the browser cache on this reload. Requests answered from
+        // the in-memory cache are invisible to webRequest, so a normal
+        // (cache-using) reload would under-count domains whose subresources
+        // are served from cache. A cache-bypassing reload forces those
+        // requests back onto the network where onBeforeRequest observes them.
+        await safeApiCall('tabs.reload', () =>
+            browser.tabs.reload(tab.id, { bypassCache: true })
+        );
     } else {
         await showBorder(tab.id);
     }
